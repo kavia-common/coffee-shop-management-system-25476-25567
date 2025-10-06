@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './home-screen-1-3.css';
+import { attachImgErrorLogging } from './useImageErrorLogger';
 
 /**
  * PUBLIC_INTERFACE
@@ -11,6 +12,8 @@ export default function HomeScreen13() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Attach image error logging to help detect 404s during development
+    attachImgErrorLogging(document);
     // Load and run the screen-specific JS safely
     // We inline a minimal version of the original initializer to avoid polluting globals.
     // Original behavior: binds pulse interactions on like buttons, filter, and bottom nav.

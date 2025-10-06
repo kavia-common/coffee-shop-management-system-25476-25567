@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import './cafe-screen-1-6.css';
+import { attachImgErrorLogging } from './useImageErrorLogger';
 
 /**
  * PUBLIC_INTERFACE
@@ -8,6 +9,8 @@ import './cafe-screen-1-6.css';
  */
 export default function CafeScreen16() {
   useEffect(() => {
+    // Attach image error logging to help detect 404s during development
+    attachImgErrorLogging(document);
     const cleanupFns = [];
 
     function pulse(el) {

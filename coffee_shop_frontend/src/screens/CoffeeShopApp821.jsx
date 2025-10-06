@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import './coffee-shop-app-8-21.css';
+import { attachImgErrorLogging } from './useImageErrorLogger';
 
 /**
  * PUBLIC_INTERFACE
@@ -7,6 +8,8 @@ import './coffee-shop-app-8-21.css';
  */
 export default function CoffeeShopApp821() {
   useEffect(() => {
+    // Attach image error logging to help detect 404s during development
+    attachImgErrorLogging(document);
     // Placeholder: no interactions specified in original
   }, []);
 

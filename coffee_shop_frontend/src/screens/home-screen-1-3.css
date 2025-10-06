@@ -41,6 +41,7 @@
 /* Utility: absolute positioned layer */
 .layer{ position:absolute; pointer-events:auto; }
 
+/* All assets should be referenced with absolute /assets/figmaimages/... paths */
 /* Fallback style for any missing images to avoid blank layout gaps */
 img:not([src]), img[src=""], img[onerror="this.style.display='none'"] {
   background: repeating-linear-gradient(45deg, #f3f4f6, #f3f4f6 10px, #e5e7eb 10px, #e5e7eb 20px);
