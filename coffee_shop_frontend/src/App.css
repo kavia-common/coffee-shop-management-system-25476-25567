@@ -56,6 +56,15 @@
 .App-link {
   color: var(--text-secondary);
   transition: color 0.3s ease;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+.App-link:hover {
+  color: var(--text-primary);
+  background-color: rgba(97, 218, 251, 0.08);
 }
 
 .theme-toggle {
