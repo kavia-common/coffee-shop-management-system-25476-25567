@@ -1,19 +1,35 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import './cafe-screen-1-6.css';
+import './shared-bottom-nav.css';
 import { attachImgErrorLogging } from './useImageErrorLogger';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import BottomNav from '../components/BottomNav';
+import { products, getProductById } from '../data/products';
 
 /**
  * PUBLIC_INTERFACE
  * CafeScreen16 renders the Figma "Cafe Screen (screen_1:6)" as a React component.
- * It imports CSS and wires up interactions in a scoped effect.
+ * It reads the selected product from route state or query and displays dynamic content.
  */
 export default function CafeScreen16() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    // Attach image error logging to help detect 404s during development
     attachImgErrorLogging(document);
+  }, []);
+
+  const selected = useMemo(() => {
+    // from state
+    const stateId = location?.state?.productId;
+    // from query
+    const searchParams = new URLSearchParams(location.search);
+    const queryId = searchParams.get('productId');
+    const id = stateId || queryId;
+    return getProductById(id) || products[0];
+  }, [location]);
+
+  useEffect(() => {
     const cleanupFns = [];
 
     function pulse(el) {
@@ -82,17 +98,16 @@ export default function CafeScreen16() {
       });
     });
 
-    return () => {
-      cleanupFns.forEach((fn) => fn && fn());
-    };
+    return () => cleanupFns.forEach((fn) => fn && fn());
   }, [navigate]);
 
   return (
     <div className="viewport">
       <div className="artboard" role="main" aria-label="Cafe Screen Artboard">
+        {/* Hero uses a valid image; if selected product has an image, prefer that */}
         <img
           className="layer layer-205-198 rect-1748"
-          src="/assets/figmaimages/figma_image_205_198.png"
+          src={selected?.image || '/assets/figmaimages/figma_image_205_198.png'}
           alt="Cafe hero"
           draggable="false"
         />
@@ -149,8 +164,9 @@ export default function CafeScreen16() {
           </div>
         </div>
 
+        {/* Cafe info uses selected product */}
         <div className="layer frame frame-207-63" aria-label="Cafe info">
-          <div className="text t-207-40">Haus Coffee</div>
+          <div className="text t-207-40">{selected?.name || 'Haus Coffee'}</div>
           <div className="row row-207-59" aria-label="Rating">
             <img
               className="star-207-60"
@@ -158,16 +174,20 @@ export default function CafeScreen16() {
               alt=""
               draggable="false"
             />
-            <div className="text t-207-61">4.4 429 reviews</div>
+            <div className="text t-207-61">
+              {selected?.rating ?? 4.4} {Intl.NumberFormat('en-US').format(selected?.reviews ?? 429)} reviews
+            </div>
           </div>
           <div className="text t-207-62">San Francisco, CA</div>
         </div>
 
+        {/* Menu list: bind two items to real images from data source */}
         <div className="layer frame frame-208-24" role="region" aria-label="Menu list">
+          {/* Card 1: cafe mocha from products */}
           <div className="menu-card group-207-91">
             <div className="card-bg rect-207-64" aria-hidden="true"></div>
 
-            <div className="add-btn group-207-79" role="button" tabIndex={0} aria-label="Add Cafè mocha to order">
+            <div className="add-btn group-207-79" role="button" tabIndex={0} aria-label={`Add ${products[2].name} to order`}>
               <img className="add-ellipse img-207-80" src="/assets/figmaimages/figma_image_207_80.png" alt="" draggable="false" />
               <div className="plus icon-207-87" aria-hidden="true">
                 <span className="v-207-88"></span>
@@ -176,21 +196,22 @@ export default function CafeScreen16() {
             </div>
 
             <div className="menu-item group-207-90">
-              <img className="thumb img-207-65" src="/assets/figmaimages/figma_image_207_65.png" alt="Cafè mocha" draggable="false" />
+              <img className="thumb img-207-65" src={products[2].image} alt={products[2].name} draggable="false" />
               <div className="details frame-207-83">
                 <div className="stack frame-207-82">
-                  <div className="title t-207-66">Cafè mocha</div>
+                  <div className="title t-207-66">{products[2].name}</div>
                   <div className="desc t-207-67">A chocolate-flavored warm beverage that is a variant of a café latte</div>
                 </div>
-                <div className="price t-207-78">$3.00</div>
+                <div className="price t-207-78">${products[2].price.toFixed(2)}</div>
               </div>
             </div>
           </div>
 
+          {/* Card 2: caramel macchiato with a valid image */}
           <div className="menu-card group-208-10">
             <div className="card-bg rect-208-11" aria-hidden="true"></div>
 
-            <div className="add-btn group-208-12" role="button" tabIndex={0} aria-label="Add Caramel macchiato to order">
+            <div className="add-btn group-208-12" role="button" tabIndex={0} aria-label={`Add ${products[3].name} to order`}>
               <div className="add-ellipse ellipse-208-13"></div>
               <div className="plus icon-208-14" aria-hidden="true">
                 <span className="v-208-15"></span>
@@ -199,19 +220,21 @@ export default function CafeScreen16() {
             </div>
 
             <div className="menu-item group-208-17">
-              <div className="thumb rect-208-18" aria-hidden="true"></div>
+              <img className="thumb img-207-65" src={products[3].image} alt={products[3].name} draggable="false" />
               <div className="details frame-208-19">
                 <div className="stack frame-208-20">
-                  <div className="title t-208-21">Caramel machiatto</div>
-                  <div className="desc t-208-22">Steamed milk marked with an espresso and  caramel topping</div>
+                  <div className="title t-208-21">{products[3].name}</div>
+                  <div className="desc t-208-22">Steamed milk marked with an espresso and caramel topping</div>
                 </div>
-                <div className="price t-208-23">$3.50</div>
+                <div className="price t-208-23">${products[3].price.toFixed(2)}</div>
               </div>
             </div>
           </div>
         </div>
 
+        {/* Gradient band behind BottomNav */}
         <div className="layer rect-208-30" aria-hidden="true"></div>
+        <BottomNav className="layer" />
       </div>
     </div>
   );

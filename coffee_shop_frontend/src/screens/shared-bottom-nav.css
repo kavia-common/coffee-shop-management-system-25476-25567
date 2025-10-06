@@ -1,0 +1,85 @@
+/* Shared Bottom Navigation – tuned to match the latest screenshot:
+   - Overall height: 114px area, with content centered vertically
+   - Active item shows rounded plate behind icon
+   - Icons ~24px with subtle offsets
+*/
+
+.bottom-nav {
+  position: absolute;
+  left: 0;
+  top: 698px; /* align with existing screens */
+  width: 375px;
+  height: 114px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 32px;
+  z-index: 10; /* above content bands */
+  padding-top: 10px;
+}
+
+.bottom-nav .bn-item,
+.bottom-nav a {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  margin-top: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.bottom-nav .bn-item.home {
+  width: 70px;
+  height: 58px;
+  margin-top: 8px;
+}
+
+.bottom-nav .bn-item .plate {
+  display: none;
+}
+
+.bottom-nav .bn-item.home .plate {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 70px;
+  height: 58px;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  display: none; /* only visible on active */
+}
+
+.bottom-nav .icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+/* Active states using NavLink is-active */
+.bottom-nav a.is-active .icon {
+  filter: saturate(1.05);
+}
+
+.bottom-nav .bn-item.home.is-active .plate {
+  display: block;
+}
+
+/* Accessibility focus ring */
+.bottom-nav a:focus-visible {
+  outline: 2px solid #F59E0B;
+  outline-offset: 2px;
+}
+
+/* Ensure this can overlay the gradient band used on Cafe and Home */
+.separator-band {
+  position: absolute;
+  left: 0;
+  top: 698px;
+  width: 375px;
+  height: 114px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0.06));
+  z-index: 5;
+}
