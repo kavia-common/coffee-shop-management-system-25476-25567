@@ -5,7 +5,6 @@ import { attachImgErrorLogging } from './useImageErrorLogger';
 import { useLocation, useNavigate } from 'react-router-dom';
 import BottomNav from '../components/BottomNav';
 import { products, getProductById } from '../data/products';
-import { useFavorites } from '../context/FavoritesContext';
 
 /**
  * PUBLIC_INTERFACE
@@ -15,7 +14,6 @@ import { useFavorites } from '../context/FavoritesContext';
 export default function CafeScreen16() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { isFavorite, toggleFavorite } = useFavorites();
 
   useEffect(() => {
     attachImgErrorLogging(document);
@@ -103,46 +101,6 @@ export default function CafeScreen16() {
     return () => cleanupFns.forEach((fn) => fn && fn());
   }, [navigate]);
 
-  const HeartInline = ({ pid, style = {} }) => {
-    const fav = isFavorite(pid);
-    return (
-      <button
-        type="button"
-        aria-label={fav ? 'Remove from favorites' : 'Add to favorites'}
-        aria-pressed={fav}
-        onClick={(e) => {
-          e.stopPropagation();
-          toggleFavorite(pid);
-        }}
-        style={{
-          position: 'absolute',
-          right: -6,
-          top: -6,
-          width: 36,
-          height: 36,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          cursor: 'pointer',
-          zIndex: 4,
-          background: 'transparent',
-          border: 'none',
-          padding: 0,
-          ...style,
-        }}
-      >
-        <img className="ellipse-205-84" src="/assets/figmaimages/figma_image_205_84.png" alt="" draggable="false" />
-        <img
-          className="icon-205-91"
-          src="/assets/figmaimages/figma_image_205_91.png"
-          alt=""
-          draggable="false"
-          style={fav ? { filter: 'invert(17%) sepia(8%) saturate(533%) hue-rotate(173deg) brightness(93%) contrast(90%)' } : undefined}
-        />
-      </button>
-    );
-  };
-
   return (
     <div className="viewport">
       <div className="artboard" role="main" aria-label="Cafe Screen Artboard">
@@ -226,11 +184,10 @@ export default function CafeScreen16() {
         {/* Menu list: bind two items to real images from data source */}
         <div className="layer frame frame-208-24" role="region" aria-label="Menu list">
           {/* Card 1: cafe mocha from products */}
-          <div className="menu-card group-207-91" style={{ zIndex: 2 }}>
+          <div className="menu-card group-207-91">
             <div className="card-bg rect-207-64" aria-hidden="true"></div>
 
-            <div className="add-btn group-207-79 btn btn-primary" role="button" tabIndex={0} aria-label={`Add ${products[2].name} to order`}>
-              {/* Keep decorative ellipse image for layout fidelity */}
+            <div className="add-btn group-207-79" role="button" tabIndex={0} aria-label={`Add ${products[2].name} to order`}>
               <img className="add-ellipse img-207-80" src="/assets/figmaimages/figma_image_207_80.png" alt="" draggable="false" />
               <div className="plus icon-207-87" aria-hidden="true">
                 <span className="v-207-88"></span>
@@ -238,9 +195,8 @@ export default function CafeScreen16() {
               </div>
             </div>
 
-            <div className="menu-item group-207-90" style={{ position: 'relative' }}>
+            <div className="menu-item group-207-90">
               <img className="thumb img-207-65" src={products[2].image} alt={products[2].name} draggable="false" />
-              <HeartInline pid={products[2].id} />
               <div className="details frame-207-83">
                 <div className="stack frame-207-82">
                   <div className="title t-207-66">{products[2].name}</div>
@@ -252,10 +208,10 @@ export default function CafeScreen16() {
           </div>
 
           {/* Card 2: caramel macchiato with a valid image */}
-          <div className="menu-card group-208-10" style={{ zIndex: 2 }}>
+          <div className="menu-card group-208-10">
             <div className="card-bg rect-208-11" aria-hidden="true"></div>
 
-            <div className="add-btn group-208-12 btn btn-primary" role="button" tabIndex={0} aria-label={`Add ${products[3].name} to order`}>
+            <div className="add-btn group-208-12" role="button" tabIndex={0} aria-label={`Add ${products[3].name} to order`}>
               <div className="add-ellipse ellipse-208-13"></div>
               <div className="plus icon-208-14" aria-hidden="true">
                 <span className="v-208-15"></span>
@@ -263,9 +219,8 @@ export default function CafeScreen16() {
               </div>
             </div>
 
-            <div className="menu-item group-208-17" style={{ position: 'relative' }}>
+            <div className="menu-item group-208-17">
               <img className="thumb img-207-65" src={products[3].image} alt={products[3].name} draggable="false" />
-              <HeartInline pid={products[3].id} />
               <div className="details frame-208-19">
                 <div className="stack frame-208-20">
                   <div className="title t-208-21">{products[3].name}</div>
