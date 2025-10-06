@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './home-screen-1-3.css';
 
 /**
@@ -7,6 +8,8 @@ import './home-screen-1-3.css';
  * It imports the screen-specific CSS and initializes its JS interactions within a scoped effect.
  */
 export default function HomeScreen13() {
+  const navigate = useNavigate();
+
   useEffect(() => {
     // Load and run the screen-specific JS safely
     // We inline a minimal version of the original initializer to avoid polluting globals.
@@ -91,10 +94,36 @@ export default function HomeScreen13() {
       });
     }
 
+    // Wire navigation from a coffee item/card to Cafe screen
+    const cafeTargets = [
+      document.querySelector('.card-205-113 .group-205-111'), // Haus Coffee image group
+      document.querySelector('.card-205-113 .frame-205-102'), // Haus Coffee details frame
+      document.querySelector('.card-205-113') // entire card as fallback
+    ].filter(Boolean);
+
+    cafeTargets.forEach((target) => {
+      target.style.cursor = 'pointer';
+      const onClick = () => navigate('/screens/cafe');
+      const onKey = (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          navigate('/screens/cafe');
+        }
+      };
+      target.setAttribute('role', 'button');
+      target.setAttribute('tabIndex', '0');
+      target.addEventListener('click', onClick);
+      target.addEventListener('keydown', onKey);
+      cleanupFns.push(() => {
+        target.removeEventListener('click', onClick);
+        target.removeEventListener('keydown', onKey);
+      });
+    });
+
     return () => {
       cleanupFns.forEach((fn) => fn && fn());
     };
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="viewport">

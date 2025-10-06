@@ -66,7 +66,7 @@ function App() {
             <Link className={linkClass} to="/">Home</Link>
             <Link className={linkClass} to="/screens">All Screens</Link>
             <Link className={linkClass} to="/screens/home-1-3">Home Screen (1:3)</Link>
-            <Link className={linkClass} to="/screens/cafe-1-6">Cafe Screen (1:6)</Link>
+            <Link className={linkClass} to="/screens/cafe">Cafe Screen (1:6)</Link>
             <Link className={linkClass} to="/screens/notes-8-3">Notes [Delete after reading] (8:3)</Link>
             <Link className={linkClass} to="/screens/coffee-app-8-21">Coffee Shop App (8:21)</Link>
             <button
@@ -83,22 +83,6 @@ function App() {
     );
   }
 
-  const HomeLanding = () => (
-    <div className="App">
-      <Navbar />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          Current theme: <strong>{theme}</strong>
-        </p>
-        <Link className="App-link" to="/screens">Go to Figma Screens</Link>
-      </header>
-    </div>
-  );
-
   // Wrapper to render navbar above routed screens for consistent navigation
   const WithNavbar = ({ children }) => (
     <div className="App">
@@ -110,9 +94,13 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomeLanding />} />
+        {/* Default route now renders the real Home Screen (1:3) */}
+        <Route path="/" element={<WithNavbar><HomeScreen13 /></WithNavbar>} />
         <Route path="/screens" element={<WithNavbar><ScreensIndex /></WithNavbar>} />
         <Route path="/screens/home-1-3" element={<WithNavbar><HomeScreen13 /></WithNavbar>} />
+        {/* New canonical cafe route at /screens/cafe as requested */}
+        <Route path="/screens/cafe" element={<WithNavbar><CafeScreen16 /></WithNavbar>} />
+        {/* Keep the original route to avoid breaking links (no changes to other routes) */}
         <Route path="/screens/cafe-1-6" element={<WithNavbar><CafeScreen16 /></WithNavbar>} />
         <Route path="/screens/notes-8-3" element={<WithNavbar><NotesScreen83 /></WithNavbar>} />
         <Route path="/screens/coffee-app-8-21" element={<WithNavbar><CoffeeShopApp821 /></WithNavbar>} />
