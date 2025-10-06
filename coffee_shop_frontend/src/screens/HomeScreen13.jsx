@@ -5,6 +5,7 @@ import './shared-bottom-nav.css';
 import { attachImgErrorLogging } from './useImageErrorLogger';
 import BottomNav from '../components/BottomNav';
 import { products } from '../data/products';
+import { useFavorites } from '../context/FavoritesContext';
 
 /**
  * PUBLIC_INTERFACE
@@ -13,6 +14,7 @@ import { products } from '../data/products';
  */
 export default function HomeScreen13() {
   const navigate = useNavigate();
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   useEffect(() => {
     attachImgErrorLogging(document);
@@ -29,6 +31,42 @@ export default function HomeScreen13() {
 
   const handleCardClick = (p) => {
     navigate('/screens/cafe', { state: { productId: p.id } });
+  };
+
+  const HeartButton = ({ id, filledVariant }) => {
+    const fav = isFavorite(id);
+    return (
+      <button
+        type="button"
+        className={filledVariant ? 'group-205-109' : 'group-205-108'}
+        aria-label={fav ? 'Remove from favorites' : 'Add to favorites'}
+        aria-pressed={fav}
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleFavorite(id);
+        }}
+        style={{ position: 'absolute', left: filledVariant ? 127 : 124, top: 0, width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', zIndex: 3, background: 'transparent', border: 'none', padding: 0 }}
+      >
+        {/* circular plate behind heart */}
+        {filledVariant ? (
+          <div className="ellipse-205-92" style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(17,24,39,0.08)' }} />
+        ) : (
+          <img className="ellipse-205-84" src="/assets/figmaimages/figma_image_205_84.png" alt="" draggable="false" />
+        )}
+        {/* heart icon - switch between outline (default asset) and a filled style via CSS box */}
+        {fav ? (
+          <img
+            className="icon-205-91"
+            src="/assets/figmaimages/figma_image_205_91.png"
+            alt=""
+            draggable="false"
+            style={{ filter: 'invert(17%) sepia(8%) saturate(533%) hue-rotate(173deg) brightness(93%) contrast(90%)' }}
+          />
+        ) : (
+          <img className="icon-205-91" src="/assets/figmaimages/figma_image_205_91.png" alt="" draggable="false" />
+        )}
+      </button>
+    );
   };
 
   return (
@@ -84,12 +122,9 @@ export default function HomeScreen13() {
             onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleCardClick(featured[0])}
             aria-label={`Open ${featured[0].name}`}
           >
-            <div className="group-205-110">
+            <div className="group-205-110" style={{ position: 'relative', zIndex: 1 }}>
               <img className="rect-203-72" src={featured[0].image} alt={`${featured[0].name} image`} draggable="false" />
-              <div className="group-205-108" role="button" tabIndex={-1} aria-label="Like">
-                <img className="ellipse-205-84" src="/assets/figmaimages/figma_image_205_84.png" alt="" draggable="false" />
-                <img className="icon-205-91" src="/assets/figmaimages/figma_image_205_91.png" alt="" draggable="false" />
-              </div>
+              <HeartButton id={featured[0].id} />
             </div>
             <div className="frame-205-101">
               <div className="text-204-76">{featured[0].name}</div>
@@ -114,12 +149,9 @@ export default function HomeScreen13() {
             onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleCardClick(featured[1])}
             aria-label={`Open ${featured[1].name}`}
           >
-            <div className="group-205-111">
+            <div className="group-205-111" style={{ position: 'relative', zIndex: 1 }}>
               <img className="rect-203-73" src={featured[1].image} alt={`${featured[1].name} image`} draggable="false" />
-              <div className="group-205-109" role="button" tabIndex={-1} aria-label="Like">
-                <div className="ellipse-205-92"></div>
-                <div className="icon-205-93"></div>
-              </div>
+              <HeartButton id={featured[1].id} filledVariant />
             </div>
             <div className="frame-205-102">
               <div className="text-205-103">{featured[1].name}</div>
@@ -133,8 +165,6 @@ export default function HomeScreen13() {
             </div>
           </div>
         )}
-
-        {/* Remove placeholder cards without images: card-205-172 and card-205-184 were gray boxes; omitted here */}
 
         {/* Separator band behind BottomNav to match Figma layering */}
         <div className="separator-band" aria-hidden="true"></div>

@@ -23,14 +23,11 @@ export default function FavoritesScreen() {
 
         {items.length === 0 && (
           <div
-            className="layer favorites-empty"
-            style={{ left: 23, top: 130, width: 329 }}
+            className="layer"
+            style={{ left: 23, top: 130, width: 329, color: '#6B7280', fontSize: 14 }}
             aria-live="polite"
           >
-            <div style={{ marginBottom: 12 }}>You have no favorites yet. Tap the heart on a card to add one.</div>
-            <a href="/screens/home-1-3" className="btn btn-primary" style={{ borderRadius: 12, padding: '10px 14px', display: 'inline-flex' }}>
-              Browse coffees
-            </a>
+            You have no favorites yet. Tap the heart on a card to add one.
           </div>
         )}
 
