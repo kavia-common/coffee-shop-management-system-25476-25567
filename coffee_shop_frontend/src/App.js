@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import './styles/theme.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomeScreen13 from './screens/HomeScreen13';
 import CafeScreen16 from './screens/CafeScreen16';

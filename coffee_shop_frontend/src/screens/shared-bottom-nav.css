@@ -48,8 +48,8 @@
   width: 70px;
   height: 58px;
   border-radius: 18px;
-  background: #ffffff;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  background: var(--bn-active-bg, #ffffff);
+  box-shadow: var(--bn-active-shadow, 0 4px 10px rgba(0,0,0,0.06));
   display: none; /* only visible on active */
   z-index: 20;
 }
@@ -60,19 +60,24 @@
   display: block;
 }
 
-/* Active states using NavLink is-active */
+/* Active states using NavLink is-active — icon tinted green via filter defined in theme.css */
 .bottom-nav a.is-active .icon {
-  filter: saturate(1.05);
+  filter: brightness(0) saturate(100%) invert(61%) sepia(51%) saturate(444%) hue-rotate(82deg) brightness(95%) contrast(94%);
+}
+
+/* Inactive icons appear neutral */
+.bottom-nav a:not(.is-active) .icon {
+  filter: brightness(0) saturate(100%) invert(63%) sepia(5%) saturate(356%) hue-rotate(171deg) brightness(89%) contrast(84%);
 }
 
 .bottom-nav .bn-item.home.is-active .plate {
   display: block;
 }
 
-/* Accessibility focus ring */
+/* Accessibility focus ring - align with brand green */
 .bottom-nav a:focus-visible {
-  outline: 2px solid #F59E0B;
-  outline-offset: 2px;
+  outline: var(--focus-ring, 2px solid #22c55e);
+  outline-offset: var(--focus-offset, 2px);
 }
 
 /* Ensure this can overlay the gradient band used on Cafe and Home */

@@ -229,7 +229,8 @@ export default function CafeScreen16() {
           <div className="menu-card group-207-91" style={{ zIndex: 2 }}>
             <div className="card-bg rect-207-64" aria-hidden="true"></div>
 
-            <div className="add-btn group-207-79" role="button" tabIndex={0} aria-label={`Add ${products[2].name} to order`}>
+            <div className="add-btn group-207-79 btn btn-primary" role="button" tabIndex={0} aria-label={`Add ${products[2].name} to order`}>
+              {/* Keep decorative ellipse image for layout fidelity */}
               <img className="add-ellipse img-207-80" src="/assets/figmaimages/figma_image_207_80.png" alt="" draggable="false" />
               <div className="plus icon-207-87" aria-hidden="true">
                 <span className="v-207-88"></span>
@@ -254,7 +255,7 @@ export default function CafeScreen16() {
           <div className="menu-card group-208-10" style={{ zIndex: 2 }}>
             <div className="card-bg rect-208-11" aria-hidden="true"></div>
 
-            <div className="add-btn group-208-12" role="button" tabIndex={0} aria-label={`Add ${products[3].name} to order`}>
+            <div className="add-btn group-208-12 btn btn-primary" role="button" tabIndex={0} aria-label={`Add ${products[3].name} to order`}>
               <div className="add-ellipse ellipse-208-13"></div>
               <div className="plus icon-208-14" aria-hidden="true">
                 <span className="v-208-15"></span>

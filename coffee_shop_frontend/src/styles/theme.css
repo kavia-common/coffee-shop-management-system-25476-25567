@@ -1,0 +1,181 @@
+:root {
+  /* Brand theme variables - Green/White */
+  --brand-green: #22c55e; /* emerald-500 */
+  --brand-green-600: #16a34a;
+  --brand-green-700: #15803d;
+  --neutral-900: #111827;
+  --neutral-700: #374151;
+  --neutral-500: #6B7280;
+  --neutral-200: #e5e7eb;
+  --neutral-100: #f3f4f6;
+  --white: #ffffff;
+
+  /* Common radii, spacing, shadows */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-soft: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 10px rgba(0,0,0,0.10);
+  --shadow-strong: 0 8px 24px rgba(0,0,0,0.12);
+
+  /* Interactive outline for accessibility */
+  --focus-ring: 2px solid #22c55e;
+  --focus-offset: 2px;
+
+  /* BottomNav theme tokens */
+  --bn-active-bg: #ffffff;
+  --bn-active-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  --bn-active-icon: var(--brand-green);
+  --bn-inactive-icon: #9CA3AF;
+}
+
+/* Base button system */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease, transform .08s ease;
+  text-decoration: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* Primary: green background, white text */
+.btn-primary {
+  background: var(--brand-green);
+  color: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-primary:hover {
+  background: var(--brand-green-600);
+}
+
+.btn-primary:active {
+  background: var(--brand-green-700);
+  transform: translateY(0.5px);
+}
+
+/* Secondary: white background, green text and border */
+.btn-secondary {
+  background: var(--white);
+  color: var(--brand-green);
+  border-color: var(--brand-green);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-secondary:hover {
+  background: #f8fff9;
+  border-color: var(--brand-green-600);
+  color: var(--brand-green-600);
+}
+
+.btn-secondary:active {
+  background: #f1fdf3;
+  border-color: var(--brand-green-700);
+  color: var(--brand-green-700);
+  transform: translateY(0.5px);
+}
+
+/* Size helpers if needed later */
+.btn-sm { padding: 8px 12px; font-size: 13px; }
+.btn-lg { padding: 12px 18px; font-size: 15px; }
+
+/* Apply subtle rounding/shadow polish to key cards/plates where appropriate */
+.card,
+.card-bg {
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Category frame selected/pressed polish (CafeScreen) */
+.group-207-57 .frame[aria-pressed="true"] {
+  box-shadow: inset 0 0 0 2px var(--brand-green);
+}
+.group-207-57 .frame:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* Add button "+" circles: emphasize green accent for actionable add-to-cart */
+.add-btn .plus span {
+  background: var(--brand-green) !important;
+}
+.add-btn:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* Back chevron button focus ring to green */
+.icon-btn.chevron-left-207-48:focus-visible {
+  outline: var(--focus-ring) !important;
+  outline-offset: var(--focus-offset) !important;
+}
+
+/* Bottom Navigation - active pill and icon tinting consistent with theme */
+.bottom-nav .bn-item.home .plate {
+  background: var(--bn-active-bg);
+  box-shadow: var(--bn-active-shadow);
+}
+
+.bottom-nav a .icon {
+  /* Keep image assets intact; visually tint by filters without modifying sources */
+  filter: none;
+}
+
+/* Active state: green-tinted icons via CSS filter approximation */
+.bottom-nav a.is-active .icon {
+  /* CSS filter approximating emerald-500; subtle to avoid over-tinting */
+  filter: brightness(0) saturate(100%) invert(61%) sepia(51%) saturate(444%) hue-rotate(82deg) brightness(95%) contrast(94%);
+}
+
+/* Inactive state: neutral gray tone */
+.bottom-nav a:not(.is-active) .icon {
+  filter: brightness(0) saturate(100%) invert(63%) sepia(5%) saturate(356%) hue-rotate(171deg) brightness(89%) contrast(84%);
+}
+
+/* Accessibility: ensure focus on nav items is visible and green-themed */
+.bottom-nav a:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* General text/spacing polish tweaks for consistency */
+.text-203-70,
+.t-207-40 {
+  letter-spacing: 0.1px;
+}
+
+.price {
+  color: var(--neutral-900) !important;
+}
+
+/* Favorites empty state refinement if present */
+.favorites-empty {
+  color: var(--neutral-500);
+  font-size: 14px;
+}
+
+/* Utility: green chip style if future chips needed */
+.chip-green {
+  background: #f0fdf4;
+  color: var(--brand-green-700);
+  border: 1px solid #bbf7d0;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-weight: 600;
+  font-size: 12px;
+}

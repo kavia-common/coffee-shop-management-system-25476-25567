@@ -121,7 +121,7 @@ img:not([src]), img[src=""], img[onerror="this.style.display='none'"] {
   display:flex; align-items:center; justify-content:center;
   cursor:pointer;
 }
-.frame-206-13:focus{ outline:2px solid #2563EB; outline-offset:2px; }
+.frame-206-13:focus{ outline: var(--focus-ring, 2px solid #22c55e); outline-offset: var(--focus-offset, 2px); }
 
 /* 205:122 Group (20x18 centralized) */
 .group-205-122{ width:20px; height:18px; position:relative; z-index:1; }

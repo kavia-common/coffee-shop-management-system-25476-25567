@@ -88,8 +88,8 @@ img:not([src]), img[src=""], img[onerror="this.style.display='none'"] {
   z-index: 8; /* ensure above hero image and cards */
 }
 .icon-btn.chevron-left-207-48:focus{
-  outline:2px solid var(--ocean-primary);
-  outline-offset:2px;
+  outline: var(--focus-ring, 2px solid #22c55e);
+  outline-offset: var(--focus-offset, 2px);
 }
 .icon-btn.chevron-left-207-48:hover{
   transform:translateY(-1px);
@@ -235,6 +235,6 @@ img:not([src]), img[src=""], img[onerror="this.style.display='none'"] {
 
 /* Accessibility focus ring for interactive items */
 [role="button"]:focus{
-  outline:2px solid var(--ocean-secondary);
-  outline-offset:2px;
+  outline: var(--focus-ring, 2px solid #22c55e);
+  outline-offset: var(--focus-offset, 2px);
 }

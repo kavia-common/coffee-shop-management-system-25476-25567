@@ -99,7 +99,7 @@ export default function HomeScreen13() {
             </div>
           </div>
 
-          <div className="frame-206-13" role="button" tabIndex={0} aria-label="Filter">
+          <div className="frame-206-13 btn btn-secondary" role="button" tabIndex={0} aria-label="Filter">
             <div className="group-205-122" aria-hidden="true">
               <div className="line-205-118"></div>
               <div className="line-205-119"></div>
