@@ -1,0 +1,102 @@
+:root{
+  /* System stack; JSON references Raleway for notes — we approximate with system fonts */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol", sans-serif;
+
+  /* Background color per JSON color_ref color_f0edee (approx #F0EDEE) */
+  --frame-bg: #F0EDEE;
+
+  /* Text colors inferred from design system */
+  --text-main: #111827;
+  --text-secondary: #374151;
+
+  /* Subtle elevation for artboard */
+  --shadow-medium: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* Center the artboard on page */
+.viewport{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  box-sizing:border-box;
+}
+
+/* Artboard per mobile frame convention 375x812 */
+.artboard{
+  position:relative;
+  width:375px;
+  height:812px;
+  background:var(--frame-bg);
+  overflow:hidden;
+  box-shadow: var(--shadow-medium);
+  border-radius:0;
+  font-family: var(--font-family);
+  color: var(--text-main);
+}
+
+/* Utility for absolutely positioned layers */
+.layer{ position:absolute; pointer-events:auto; }
+
+/* Root frame content: Notes container (8:18)
+   JSON shows this child frame positioned inside root:
+   root frame top-left baseline is (x: -718, y: -407).
+   Notes frame is at (x:-679, y:-358) which is +39 on X and +49 on Y from root origin.
+   We pin the content to the same offsets for pixel accuracy on a 375x812 projection. */
+.frame-8-18{
+  left:39px;   /* -679 - (-718) */
+  top:49px;    /* -358 - (-407) */
+  width:423px; /* per JSON, but our artboard is 375 wide; we will allow overflow hidden by artboard.
+                  To keep pixel spec, keep original width; content visible area remains accurate. */
+  height:575px;
+}
+
+/* Title: Notes ✏️ (8:4)
+   Dimensions (w:155, h:45). For typography, JSON references typography_ref typo_19 and style_ref style_7.
+   We approximate using 32/38px for strong title feel; letter-spacing normal. */
+.t-8-4{
+  position:absolute;
+  left:0px; /* within frame 8:18, the title x aligns with the frame left */
+  top:0px;  /* y aligns with frame top */
+  width:155px;
+  height:45px;
+  margin:0;
+  font-weight:700;
+  font-size:32px;
+  line-height:38px; /* visually close to 45 container with top/bottom balance */
+  letter-spacing:0;
+  color: var(--text-main);
+}
+
+/* Body text block (8:5)
+   Dimensions per JSON: width:423, height:501; starting at y where text block sits.
+   The JSON positions the body text at (x:-679,y:-284), which inside the frame equates to:
+   top = (-284) - (-358) = 74px down from the frame top. */
+.t-8-5{
+  position:absolute;
+  left:0px;
+  top:74px;     /* derived from JSON relative placement */
+  width:423px;  /* per JSON */
+  height:auto;  /* allow natural height (while JSON shows 501) */
+  margin:0;
+
+  /* Typography approx for body — JSON typography_ref typo_20 */
+  font-weight:500;
+  font-size:16px;
+  line-height:24px;
+  letter-spacing:0;
+  color: var(--text-secondary);
+}
+
+/* Accessibility helpers for potential interactive elements inside this screen (none required by JSON) */
+[role="button"]{ -webkit-tap-highlight-color: transparent; transition: transform 120ms ease, box-shadow 160ms ease; }
+[role="button"]:hover{ box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+[role="button"]:active{ transform: scale(0.98); }
+
+/* Ensure text rendering quality on various devices */
+.artboard, .artboard *{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

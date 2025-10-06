@@ -1,0 +1,287 @@
+:root{
+  /* Typography defaults (approximated to system stack; metrics set below per node) */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol", sans-serif;
+
+  /* Derived from JSON background color_ref color_fcfeff */
+  --bg-frame: #FCFEFF;
+
+  /* Generic colors inferred from JSON style refs */
+  --text-main: #111827;
+  --text-secondary: #374151;
+  --text-tertiary: #6B7280;
+  --surface: #FFFFFF;
+
+  /* Shadows approximations */
+  --shadow-soft: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-medium: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* Center the artboard on page */
+.viewport{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  box-sizing:border-box;
+}
+
+.artboard{
+  position:relative;
+  width:375px;
+  height:812px;
+  background:var(--bg-frame);
+  overflow:hidden;
+  box-shadow: var(--shadow-medium);
+  font-family: var(--font-family);
+  color:var(--text-main);
+  border-radius:0; /* Frame has no radius in JSON */
+}
+
+/* Utility: absolute positioned layer */
+.layer{ position:absolute; pointer-events:auto; }
+
+/* 203:66 - Ellipse 1 */
+.img-203-66{
+  left:106px; top:52px; /* y:-355 -> +407 = 52 */
+  width:50px; height:50px; border-radius:50%;
+  object-fit:cover;
+  z-index: 2; /* ensure above background but below nav */
+}
+
+/* 203:37 - Find a coffee shop anywhere (typo_17) */
+.text-203-37{
+  left:23px; top:111px; /* x:-165 -> 23, y:-296 -> +407 = 111 */
+  width:216px; height:58px;
+  font-weight:700; /* Inter/semibold approximated to 700 */
+  font-size:24px;
+  line-height:29px; /* 58 total across 2 lines */
+  letter-spacing:0;
+  color:#111827;
+  display:block;
+  z-index:1;
+}
+
+/* 206:16 - Search content container frame */
+.frame-206-16{
+  left:23px; top:198px; /* x:-165 -> 23, y:-209 -> 198 */
+  width:320px; height:56px;
+  display:flex; flex-direction:row; gap:11px;
+  z-index:1;
+}
+
+/* 206:15 Search (style_12) */
+.frame-206-15{
+  width:251px; height:56px;
+  background:#FFFFFF;
+  border-radius:16px;
+  box-shadow: inset 0 0 0 1px rgba(17,24,39,0.08);
+  display:flex; align-items:center; justify-content:flex-start;
+  padding-left:13px; /* places inner group at x:-152 -> left+13 matches spacing */
+  box-sizing:border-box;
+}
+
+/* 206:14 inner content */
+.frame-206-14{
+  width:88px; height:24px;
+  display:flex; flex-direction:row; align-items:center; gap:11px;
+}
+
+/* 205:204 search icon frame (24x24) */
+.iconframe-205-204{
+  width:24px; height:24px; display:flex; align-items:center; justify-content:center;
+}
+.icon-205-205{
+  width:16px; height:16px; display:block;
+}
+
+/* 203:71 Search text (typo_18) */
+.text-203-71{
+  width:53px; height:19px;
+  font-weight:500;
+  font-size:16px;
+  line-height:19px;
+  letter-spacing:0;
+  color:#6B7280;
+}
+
+/* 206:13 Filter (style_27) */
+.frame-206-13{
+  width:58px; height:56px;
+  background:#FFFFFF;
+  border-radius:16px;
+  box-shadow: inset 0 0 0 1px rgba(17,24,39,0.08);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+}
+.frame-206-13:focus{ outline:2px solid #2563EB; outline-offset:2px; }
+
+/* 205:122 Group (20x18 centralized) */
+.group-205-122{ width:20px; height:18px; position:relative; z-index:1; }
+.line-205-118, .line-205-119{
+  position:absolute; height:2px; background:#111827; border-radius:1px;
+}
+.line-205-118{ left:10px; top:5px; width:10px; transform:translateX(-50%); } /* 126-116 centers */
+.line-205-119{ left:0px; top:15px; width:10px; } /* x:116 */
+.ellipse-205-120{ position:absolute; left:0px; top:0px; width:8px; height:8px; border-radius:50%; }
+.ellipse-205-121{ position:absolute; left:12px; top:10px; width:8px; height:8px; border-radius:50%; background:#111827; }
+
+/* 203:70 - Featured coffee shops (typo_13) */
+.text-203-70{
+  left:23px; top:275px; /* y:-132 -> +407 */
+  width:210px; height:23px;
+  font-weight:600;
+  font-size:19px;
+  line-height:23px;
+  letter-spacing:0;
+  color:#111827;
+  display:block;
+}
+
+/* CARD COMMONS */
+.card{
+  width:160px; display:flex; flex-direction:column;
+}
+
+/* Card 1 (205:112) */
+.card-205-112{
+  left:23px; top:312px; position:absolute;
+}
+.group-205-110{ position:relative; width:160px; height:179px; }
+.rect-203-72{
+  position:absolute; left:0px; top:11px; /* -84 vs group -95 -> 11 */
+  width:153px; height:168px; border-radius:16px; object-fit:cover;
+  box-shadow: var(--shadow-soft);
+}
+.group-205-108{
+  position:absolute; left:124px; top:0px; width:36px; height:36px;
+  display:flex; align-items:center; justify-content:center; cursor:pointer;
+  z-index: 2;
+}
+.group-205-108:focus{ outline:2px solid #2563EB; outline-offset:2px; }
+.ellipse-205-84{ width:36px; height:36px; display:block; border-radius:50%; }
+.icon-205-91{ position:absolute; left:10px; top:11px; width:16px; height:13.955px; display:block; z-index:3; }
+
+.frame-205-101{
+  width:153px; height:84px; display:flex; flex-direction:column; gap:8px;
+}
+.text-204-76{
+  width:153px; height:38px;
+  font-weight:700; font-size:16px; line-height:19px; letter-spacing:0; color:#111827;
+}
+.frame-205-100{
+  width:128px; height:16px; display:flex; flex-direction:row; align-items:center; gap:7px;
+}
+.icon-205-98{ width:13px; height:12.363px; display:block; }
+.text-205-94{ font-weight:500; font-size:13px; line-height:16px; letter-spacing:0; color:#374151; }
+.text-205-96{ font-weight:500; font-size:13px; line-height:16px; letter-spacing:0; color:#6B7280; }
+
+/* Card 2 (205:113) */
+.card-205-113{
+  left:191px; top:330px; position:absolute;
+}
+.group-205-111{ position:relative; width:160px; height:201px; }
+.rect-203-73{
+  position:absolute; left:0px; top:11px; width:153px; height:190px;
+  border-radius:16px; object-fit:cover; box-shadow: var(--shadow-soft);
+}
+.group-205-109{
+  position:absolute; left:127px; top:0px; width:36px; height:36px;
+  display:flex; align-items:center; justify-content:center; cursor:pointer;
+  z-index: 2;
+}
+.group-205-109:focus{ outline:2px solid #2563EB; outline-offset:2px; }
+.ellipse-205-92{ width:36px; height:36px; border-radius:50%; background:rgba(17,24,39,0.08); }
+.icon-205-93{ position:absolute; left:137px; top:12px; width:16px; height:13.955px; border-radius:2px; background:#111827; }
+
+.frame-205-102{ width:153px; height:65px; display:flex; flex-direction:column; gap:8px; }
+.text-205-103{ font-weight:700; font-size:16px; line-height:19px; letter-spacing:0; color:#111827; }
+.frame-205-104{ width:118px; height:16px; display:flex; flex-direction:row; gap:7px; align-items:center; }
+.icon-205-105{ width:13px; height:12.363px; display:block; }
+.text-205-106{ font-weight:500; font-size:13px; line-height:16px; letter-spacing:0; color:#374151; }
+.text-205-107{ font-weight:500; font-size:13px; line-height:16px; letter-spacing:0; color:#6B7280; }
+
+/* Card 3 (205:172) */
+.card-205-172{
+  left:23px; top:595px; position:absolute;
+}
+.group-205-173{ position:relative; width:160px; height:179px; }
+.rect-205-174{ position:absolute; left:0px; top:11px; width:153px; height:168px; border-radius:16px; background:#E5E7EB; }
+.group-205-175{
+  position:absolute; left:124px; top:0px; width:36px; height:36px;
+  display:flex; align-items:center; justify-content:center; cursor:pointer;
+  z-index: 2;
+}
+.group-205-175:focus{ outline:2px solid #2563EB; outline-offset:2px; }
+.ellipse-205-176{ width:36px; height:36px; border-radius:50%; background:rgba(17,24,39,0.08); }
+.icon-205-177{ position:absolute; left:137px; top:12px; width:16px; height:13.955px; background:#111827; border-radius:2px; }
+
+.frame-205-178{ width:153px; height:84px; display:flex; flex-direction:column; gap:8px; }
+.text-205-179{ font-weight:700; font-size:16px; line-height:19px; letter-spacing:0; color:#111827; }
+.frame-205-180{ width:128px; height:16px; display:flex; flex-direction:row; gap:7px; align-items:center; }
+.icon-205-181{ width:13px; height:12.363px; display:block; }
+.text-205-182{ font-weight:500; font-size:13px; line-height:16px; letter-spacing:0; color:#374151; }
+.text-205-183{ font-weight:500; font-size:13px; line-height:16px; letter-spacing:0; color:#6B7280; }
+
+/* Card 4 (205:184) */
+.card-205-184{
+  left:191px; top:616px; position:absolute;
+}
+.group-205-185{ position:relative; width:160px; height:201px; }
+.rect-205-186{ position:absolute; left:0px; top:11px; width:153px; height:190px; border-radius:16px; background:#E5E7EB; }
+.group-205-187{
+  position:absolute; left:127px; top:0px; width:36px; height:36px;
+  display:flex; align-items:center; justify-content:center; cursor:pointer;
+  z-index: 2;
+}
+.group-205-187:focus{ outline:2px solid #2563EB; outline-offset:2px; }
+.ellipse-205-188{ width:36px; height:36px; border-radius:50%; background:rgba(17,24,39,0.08); }
+.icon-205-189{ position:absolute; left:137px; top:12px; width:16px; height:13.955px; background:#111827; border-radius:2px; }
+
+.frame-205-190{ width:153px; height:65px; display:flex; flex-direction:column; gap:8px; }
+.text-205-191{ font-weight:700; font-size:16px; line-height:19px; letter-spacing:0; color:#111827; }
+.frame-205-192{ width:118px; height:16px; display:flex; flex-direction:row; gap:7px; align-items:center; }
+.icon-205-193{ width:13px; height:12.363px; display:block; }
+.text-205-194{ font-weight:500; font-size:13px; line-height:16px; letter-spacing:0; color:#374151; }
+.text-205-195{ font-weight:500; font-size:13px; line-height:16px; letter-spacing:0; color:#6B7280; }
+
+/* Bottom Navigation (205:169) */
+.nav-205-169{
+  left:0px; top:698px; /* y:291 -> +407 */
+  width:375px; height:114px;
+  display:flex; align-items:flex-start; justify-content:center; gap:32px;
+  position:absolute;
+  z-index:3;
+}
+
+/* Home selected group (205:168) */
+.group-205-168{
+  position:relative; width:70px; height:58.333px; margin-top:11.0px;
+  display:flex; align-items:center; justify-content:center;
+}
+.rect-205-165{ position:absolute; left:0; top:0; width:70px; height:58.333px; display:block; z-index:0; }
+.frame-205-153{ position:absolute; width:24px; height:24px; left:23px; top:17px; z-index:1; }
+.group-205-166{ position:absolute; left:3.6px; top:2.4px; width:18.0px; height:20.0px; }
+.icon-205-154{ position:absolute; left:0; top:0; width:18.0px; height:20.0px; display:block; }
+.icon-205-155{ position:absolute; left:6.0px; top:10.0px; width:6.0px; height:10.0px; }
+
+/* Heart (205:161) */
+.frame-205-161{ width:24px; height:24px; margin-top:29px; cursor:pointer; }
+.frame-205-161:focus{ outline:2px solid #2563EB; outline-offset:2px; }
+.icon-205-162{ width:20.903px; height:18.232px; display:block; }
+
+/* Bookmark (205:156) */
+.frame-205-156{ width:24px; height:24px; margin-top:29px; cursor:pointer; }
+.frame-205-156:focus{ outline:2px solid #2563EB; outline-offset:2px; }
+.icon-205-157{ width:14px; height:18px; display:block; margin-left:5px; margin-top:3px; }
+
+/* User (205:158) */
+.frame-205-158{ width:24px; height:24px; margin-top:29px; position:relative; cursor:pointer; }
+.frame-205-158:focus{ outline:2px solid #2563EB; outline-offset:2px; }
+.icon-205-159{ position:absolute; left:4px; top:15px; width:16px; height:6px; background:#111827; border-radius:3px; }
+.icon-205-160{ position:absolute; left:8px; top:3px; width:8px; height:8px; display:block; }
+
+/* Accessibility helpers */
+[role="button"]{ -webkit-tap-highlight-color: transparent; transition: transform 120ms ease, box-shadow 160ms ease; }
+[role="button"]:hover{ box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+[role="button"]:active{ transform: scale(0.98); }

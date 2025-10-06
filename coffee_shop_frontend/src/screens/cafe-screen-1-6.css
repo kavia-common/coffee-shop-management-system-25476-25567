@@ -1,0 +1,232 @@
+:root{
+  /* Ocean Professional theme tokens (not overriding Figma-defined colors) */
+  --ocean-primary:#2563EB;
+  --ocean-secondary:#F59E0B;
+  --ocean-text:#111827;
+  --ocean-surface:#ffffff;
+  --ocean-bg:#f9fafb;
+}
+
+/* Center the artboard on page */
+.viewport{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  box-sizing:border-box;
+}
+
+.artboard{
+  position:relative;
+  width:375px;
+  height:812px;
+  background:#FCFEFF; /* color_fcfeff derived from JSON background */
+  overflow:hidden;
+  border-radius:0; /* no radius on the frame per JSON */
+  box-shadow:0 8px 24px rgba(0,0,0,0.08);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color:#111827;
+}
+
+/* Utility for positioned layers */
+.layer{
+  position:absolute;
+  pointer-events:auto;
+}
+
+/* Rectangle 1748: hero image */
+.rect-1748{
+  left:0px; top:0px;
+  width:375px; height:334px;
+  object-fit:cover;
+}
+
+/* Rectangle 1749: lower panel */
+.rect-1749{
+  left:0px; top:306px; /* y: -101 relative to frame starting at -407 -> 306 */
+  width:375px; height:506px;
+  background:#FFFFFF; /* style_3 likely white surface */
+  border-top-left-radius:16px;
+  border-top-right-radius:16px;
+  box-shadow: 0 -1px 0 rgba(0,0,0,0.04) inset;
+}
+
+/* Group 8 (three dots) position */
+.group-205-203{
+  left:160px; top:248px; /* translating from global to frame: x 387-227=160, y -158.705 - (-407)=248.295 ~ 248 */
+  width:56px; height:12px;
+  display:flex; gap:10px; align-items:center;
+  justify-content:center;
+}
+.ellipse-205-200{
+  width:12px;height:12px; display:block;
+}
+.ellipse-205-201,
+.ellipse-205-202{
+  width:12px;height:12px; border-radius:50%;
+  background:rgba(17,24,39,0.24);
+}
+
+/* Chevron-left button */
+.icon-btn.chevron-left-207-48{
+  left:26px; top:44px; /* 253-227=26, -363 - (-407)=44 */
+  width:36px;height:36px;
+  border-radius:10px;
+  background:rgba(255,255,255,0.85);
+  box-shadow:0 2px 6px rgba(0,0,0,0.15);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+  transition:transform .15s ease, box-shadow .2s ease;
+}
+.icon-btn.chevron-left-207-48:focus{
+  outline:2px solid var(--ocean-primary);
+  outline-offset:2px;
+}
+.icon-btn.chevron-left-207-48:hover{
+  transform:translateY(-1px);
+  box-shadow:0 4px 10px rgba(0,0,0,0.18);
+}
+.chevron-vector-207-49{
+  display:block;
+  width:6px;height:12px;
+  border-right:2px solid #111827;
+  border-bottom:2px solid #111827;
+  transform: rotate(135deg);
+}
+
+/* Group 9 categories */
+.group-207-57{
+  left:47px; top:432px; /* 274-227=47, 25 - (-407)=432 */
+  width:287px;height:100px;
+  display:flex; align-items:flex-start; justify-content:space-between;
+}
+.frame{
+  display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+}
+.frame-207-34{
+  width:92px;height:100px;
+  background:#FFFFFF; border-radius:16px;
+  box-shadow:0 1px 2px rgba(0,0,0,0.05);
+  padding-top:22px;
+}
+.icon-24 img{ width:24px;height:24px; display:block; }
+.t-207-37{
+  margin-top:10px;
+  font-weight:600; font-size:14px; line-height:21px; color:#111827;
+}
+
+.frame-207-28{
+  width:54px;height:55px;
+  padding-top:22px;
+}
+.t-207-31{
+  margin-top:9px;
+  font-weight:600; font-size:14px; line-height:21px; color:#6B7280;
+}
+
+.frame-207-24{
+  width:43px;height:55px;
+  padding-top:22px;
+}
+.t-207-27{
+  margin-top:9px;
+  font-weight:600; font-size:14px; line-height:21px; color:#6B7280;
+}
+
+/* Cafe info block */
+.frame-207-63{
+  left:47px; top:331px; /* -76 - (-407)=331 */
+  width:118px;height:77px;
+  display:flex; flex-direction:column; gap:8px;
+}
+.t-207-40{
+  font-weight:700; font-size:18px; line-height:23px; color:#111827;
+}
+.row-207-59{
+  display:flex; align-items:center; gap:8px; height:16px;
+}
+.star-207-60{ width:13px; height:12.363px; display:block; }
+.t-207-61{
+  font-weight:500; font-size:13px; line-height:16px; color:#374151;
+}
+.t-207-62{
+  font-weight:500; font-size:13px; line-height:16px; color:#6B7280;
+}
+
+/* Menu list */
+.frame-208-24{
+  left:28px; top:549px; /* 142 - (-407)=549 */
+  width:330px; height:314px;
+  display:flex; flex-direction:column; gap:12px;
+}
+
+/* Card common */
+.menu-card{
+  position:relative;
+  width:330px; height:154px;
+}
+.card-bg{
+  position:absolute; left:0; top:13px; /* 155 - 142 */
+  width:320px; height:141px;
+  background:#FFFFFF;
+  border-radius:16px;
+  box-shadow:0 1px 3px rgba(0,0,0,0.06);
+}
+
+/* Add button */
+.add-btn{
+  position:absolute; right:0; top:0; width:36px; height:36px;
+}
+.img-207-80{ width:36px;height:36px; display:block; }
+.ellipse-208-13{
+  width:36px;height:36px;border-radius:50%;
+  background:#1118270D; /* light gray circle (style_13 approximation) */
+}
+.plus{
+  position:absolute; left:6px; top:6px; width:24px; height:24px;
+}
+.plus span{
+  position:absolute; background:#111827; border-radius:1px;
+}
+.v-207-88, .v-208-15{ left:50%; top:5px; width:2px; height:14px; transform:translateX(-50%); }
+.h-207-89, .h-208-16{ top:50%; left:5px; width:14px; height:2px; transform:translateY(-50%); }
+
+/* Menu item layout inside card */
+.menu-item{
+  position:absolute; left:22px; top:31px; width:268px; height:105px;
+  display:flex; gap:16px; align-items:flex-start;
+}
+.img-207-65, .rect-208-18{
+  width:89px; height:105px; border-radius:12px; object-fit:cover;
+  background:#E5E7EB;
+}
+.details{
+  display:flex; flex-direction:column; justify-content:space-between;
+  width:153px; height:105px;
+}
+.stack{
+  display:flex; flex-direction:column; gap:8px; height:75px; width:153px;
+}
+.title{
+  font-weight:700; font-size:16px; line-height:19px; color:#111827;
+}
+.desc{
+  font-weight:500; font-size:12px; line-height:16px; color:#6B7280;
+}
+.price{
+  font-weight:600; font-size:13px; line-height:16px; color:#111827;
+}
+
+/* Separator band Rectangle 1752 */
+.rect-208-30{
+  left:0px; top:698px; /* 291 - (-407)=698 */
+  width:375px; height:114px;
+  background:linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0.06));
+}
+
+/* Accessibility focus ring for interactive items */
+[role="button"]:focus{
+  outline:2px solid var(--ocean-secondary);
+  outline-offset:2px;
+}

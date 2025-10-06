@@ -1,0 +1,69 @@
+:root{
+  /* Background color per JSON color_ref color_f0edee */
+  --frame-bg: #F0EDEE;
+
+  --text-main: #111827;
+
+  /* Subtle elevation for centered artboard */
+  --shadow-medium: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* Center the artboard on page */
+.viewport{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  box-sizing:border-box;
+  background:#f0f4f8; /* page preview only; artboard uses figma bg */
+}
+
+/* Artboard per mobile frame convention 375x812 (centered) */
+.artboard{
+  position:relative;
+  width:375px;
+  height:812px;
+  background:var(--frame-bg);
+  overflow:hidden;
+  box-shadow: var(--shadow-medium);
+  border-radius:0; /* no radius on frame */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol", sans-serif;
+  color: var(--text-main);
+}
+
+/* Utility for absolutely positioned layers */
+.layer{ position:absolute; pointer-events:auto; }
+
+/* Exact coordinate mapping from JSON
+   Root frame origin: (-800, -601) -> artboard (0,0).
+   Child positions: left = x - (-800) = x + 800; top = y - (-601) = y + 601.
+*/
+
+/* Splash Screen image (node 8:23) */
+.splash-8-23{
+  left:354px;       /* -446 + 800 */
+  top:183px;        /* -418 + 601 */
+  width:416.1022px; /* exact width from JSON */
+  height:901px;     /* exact height from JSON */
+  object-fit:cover;
+  z-index: 2;       /* above neighboring screen */
+}
+
+/* Home screen rectangle (node 8:24) */
+.home-8-24{
+  left:830px;       /* 30 + 800 */
+  top:116px;        /* -485 + 601 */
+  width:416.1022px;
+  height:901px;
+  background:#FFFFFF; /* style_25 is white surface */
+  border-radius:0;
+  z-index: 1;       /* below splash image per document order */
+}
+
+/* Ensure text rendering quality on various devices */
+.artboard, .artboard *{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
