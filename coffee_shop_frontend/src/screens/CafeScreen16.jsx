@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import './cafe-screen-1-6.css';
 import { attachImgErrorLogging } from './useImageErrorLogger';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * PUBLIC_INTERFACE
@@ -8,6 +9,8 @@ import { attachImgErrorLogging } from './useImageErrorLogger';
  * It imports CSS and wires up interactions in a scoped effect.
  */
 export default function CafeScreen16() {
+  const navigate = useNavigate();
+
   useEffect(() => {
     // Attach image error logging to help detect 404s during development
     attachImgErrorLogging(document);
@@ -23,11 +26,14 @@ export default function CafeScreen16() {
 
     const backBtn = document.querySelector('.chevron-left-207-48');
     if (backBtn) {
-      const onClick = () => pulse(backBtn);
+      const onClick = () => {
+        pulse(backBtn);
+        navigate(-1);
+      };
       const onKey = (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          onClick();
+          navigate(-1);
         }
       };
       backBtn.addEventListener('click', onClick);
@@ -79,7 +85,7 @@ export default function CafeScreen16() {
     return () => {
       cleanupFns.forEach((fn) => fn && fn());
     };
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="viewport">
@@ -103,6 +109,7 @@ export default function CafeScreen16() {
           <div className="ellipse ellipse-205-202"></div>
         </div>
 
+        {/* Back button at the top area; no top navbar present */}
         <div className="layer icon-btn chevron-left-207-48" role="button" tabIndex={0} aria-label="Back">
           <span className="chevron-vector-207-49" aria-hidden="true"></span>
         </div>

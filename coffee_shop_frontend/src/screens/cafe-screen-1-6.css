@@ -77,14 +77,15 @@ img:not([src]), img[src=""], img[onerror="this.style.display='none'"] {
 
 /* Chevron-left button */
 .icon-btn.chevron-left-207-48{
-  left:26px; top:44px; /* 253-227=26, -363 - (-407)=44 */
-  width:36px;height:36px;
-  border-radius:10px;
-  background:rgba(255,255,255,0.85);
-  box-shadow:0 2px 6px rgba(0,0,0,0.15);
+  left:16px; top:24px; /* slightly closer to edges per screenshot */
+  width:40px;height:40px;
+  border-radius:12px;
+  background:rgba(255,255,255,0.92);
+  box-shadow:0 2px 8px rgba(0,0,0,0.18);
   display:flex; align-items:center; justify-content:center;
   cursor:pointer;
   transition:transform .15s ease, box-shadow .2s ease;
+  z-index: 5; /* ensure above hero image */
 }
 .icon-btn.chevron-left-207-48:focus{
   outline:2px solid var(--ocean-primary);

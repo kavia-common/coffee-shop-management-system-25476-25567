@@ -243,7 +243,7 @@ export default function HomeScreen13() {
         </div>
 
         <div className="layer nav-205-169" role="navigation" aria-label="Bottom Navigation">
-          <div className="group-205-168" aria-current="page">
+          <div className="group-205-168" aria-current="page" role="button" tabIndex={0} aria-label="Home">
             <img className="rect-205-165" src="/assets/figmaimages/figma_image_205_165.png" alt="" draggable="false" />
             <div className="frame-205-153" aria-hidden="false">
               <div className="group-205-166">

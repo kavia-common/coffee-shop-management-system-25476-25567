@@ -256,37 +256,62 @@ img:not([src]), img[src=""], img[onerror="this.style.display='none'"] {
 .nav-205-169{
   left:0px; top:698px; /* y:291 -> +407 */
   width:375px; height:114px;
-  display:flex; align-items:flex-start; justify-content:center; gap:32px;
   position:absolute;
   z-index:3;
+
+  /* Figma style base: subtle panel and inner container */
+  display:flex; align-items:flex-start; justify-content:center;
+  padding-top:10px;
 }
 
-/* Home selected group (205:168) */
+/* Inner layout: create even spacing like Figma */
+.nav-205-169 > * {
+  margin: 0 16px;
+}
+
+/* Home selected group (205:168) with rounded tab background */
 .group-205-168{
-  position:relative; width:70px; height:58.333px; margin-top:11.0px;
+  position:relative;
+  width:70px; height:58px;
+  margin-top:8px;
   display:flex; align-items:center; justify-content:center;
 }
-.rect-205-165{ position:absolute; left:0; top:0; width:70px; height:58.333px; display:block; z-index:0; }
+.rect-205-165{
+  position:absolute; left:0; top:0; width:70px; height:58px; display:block; z-index:0;
+  border-radius:18px; /* rounded per Figma */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
 .frame-205-153{ position:absolute; width:24px; height:24px; left:23px; top:17px; z-index:1; }
-.group-205-166{ position:absolute; left:3.6px; top:2.4px; width:18.0px; height:20.0px; }
-.icon-205-154{ position:absolute; left:0; top:0; width:18.0px; height:20.0px; display:block; }
-.icon-205-155{ position:absolute; left:6.0px; top:10.0px; width:6.0px; height:10.0px; }
+.group-205-166{ position:absolute; left:3.6px; top:2.4px; width:18px; height:20px; }
+.icon-205-154{ position:absolute; left:0; top:0; width:18px; height:20px; display:block; }
+.icon-205-155{ position:absolute; left:6px; top:10px; width:6px; height:10px; }
 
 /* Heart (205:161) */
-.frame-205-161{ width:24px; height:24px; margin-top:29px; cursor:pointer; }
+.frame-205-161{
+  width:28px; height:28px; margin-top:26px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+}
 .frame-205-161:focus{ outline:2px solid #2563EB; outline-offset:2px; }
-.icon-205-162{ width:20.903px; height:18.232px; display:block; }
+.icon-205-162{ width:21px; height:18.5px; display:block; }
 
 /* Bookmark (205:156) */
-.frame-205-156{ width:24px; height:24px; margin-top:29px; cursor:pointer; }
+.frame-205-156{
+  width:28px; height:28px; margin-top:26px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+}
 .frame-205-156:focus{ outline:2px solid #2563EB; outline-offset:2px; }
-.icon-205-157{ width:14px; height:18px; display:block; margin-left:5px; margin-top:3px; }
+.icon-205-157{ width:14px; height:18px; display:block; }
 
 /* User (205:158) */
-.frame-205-158{ width:24px; height:24px; margin-top:29px; position:relative; cursor:pointer; }
+.frame-205-158{
+  width:28px; height:28px; margin-top:26px; position:relative; cursor:pointer; display:flex; align-items:center; justify-content:center;
+}
 .frame-205-158:focus{ outline:2px solid #2563EB; outline-offset:2px; }
 .icon-205-159{ position:absolute; left:4px; top:15px; width:16px; height:6px; background:#111827; border-radius:3px; }
 .icon-205-160{ position:absolute; left:8px; top:3px; width:8px; height:8px; display:block; }
+
+/* Active state hint: when an item has aria-current="page" */
+.group-205-168[aria-current="page"] .rect-205-165{
+  filter: saturate(1.05);
+}
 
 /* Accessibility helpers */
 [role="button"]{ -webkit-tap-highlight-color: transparent; transition: transform 120ms ease, box-shadow 160ms ease; }
