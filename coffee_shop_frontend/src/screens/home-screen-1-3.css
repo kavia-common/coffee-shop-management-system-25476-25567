@@ -163,7 +163,7 @@ img:not([src]), img[src=""], img[onerror="this.style.display='none'"] {
 .group-205-108{
   position:absolute; left:124px; top:0px; width:36px; height:36px;
   display:flex; align-items:center; justify-content:center; cursor:pointer;
-  z-index: 2;
+  z-index: 3; /* ensure above image */
 }
 .group-205-108:focus{ outline:2px solid #2563EB; outline-offset:2px; }
 .ellipse-205-84{ width:36px; height:36px; display:block; border-radius:50%; }
@@ -195,7 +195,7 @@ img:not([src]), img[src=""], img[onerror="this.style.display='none'"] {
 .group-205-109{
   position:absolute; left:127px; top:0px; width:36px; height:36px;
   display:flex; align-items:center; justify-content:center; cursor:pointer;
-  z-index: 2;
+  z-index: 3;
 }
 .group-205-109:focus{ outline:2px solid #2563EB; outline-offset:2px; }
 .ellipse-205-92{ width:36px; height:36px; border-radius:50%; background:rgba(17,24,39,0.08); }

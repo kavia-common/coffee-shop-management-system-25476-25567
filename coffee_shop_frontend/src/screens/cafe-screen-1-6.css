@@ -85,7 +85,7 @@ img:not([src]), img[src=""], img[onerror="this.style.display='none'"] {
   display:flex; align-items:center; justify-content:center;
   cursor:pointer;
   transition:transform .15s ease, box-shadow .2s ease;
-  z-index: 5; /* ensure above hero image */
+  z-index: 8; /* ensure above hero image and cards */
 }
 .icon-btn.chevron-left-207-48:focus{
   outline:2px solid var(--ocean-primary);

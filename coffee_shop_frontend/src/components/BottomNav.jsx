@@ -10,24 +10,32 @@ import { NavLink } from 'react-router-dom';
  * - className?: optional extra class names
  */
 export default function BottomNav({ className = '' }) {
-  const getActive = ({ isActive }) => (isActive ? 'is-active' : '');
+  const cx = (isActive, extra = '') => `${extra} ${isActive ? 'is-active' : ''}`.trim();
 
   return (
-    <nav className={`bottom-nav ${className}`} aria-label="Bottom Navigation">
-      <NavLink to="/screens/home-1-3" className={({ isActive }) => `bn-item home ${isActive ? 'is-active' : ''}`} aria-label="Home">
+    <nav className={`bottom-nav ${className}`} aria-label="Bottom Navigation" role="navigation">
+      <NavLink
+        to="/screens/home-1-3"
+        className={({ isActive }) => cx(isActive, 'bn-item home')}
+        aria-label="Home"
+      >
         <span className="plate" aria-hidden="true"></span>
         <img className="icon" src="/assets/figmaimages/figma_image_205_154.png" alt="" draggable="false" />
       </NavLink>
 
-      <NavLink to="/screens" className={getActive} aria-label="Favorites">
+      <NavLink
+        to="/screens/favorites"
+        className={({ isActive }) => cx(isActive)}
+        aria-label="Favorites"
+      >
         <img className="icon" src="/assets/figmaimages/figma_image_205_162.png" alt="" draggable="false" />
       </NavLink>
 
-      <NavLink to="/screens" className={getActive} aria-label="Bookmarks">
+      <NavLink to="/screens" className={({ isActive }) => cx(isActive)} aria-label="Bookmarks">
         <img className="icon" src="/assets/figmaimages/figma_image_205_157.png" alt="" draggable="false" />
       </NavLink>
 
-      <NavLink to="/screens" className={getActive} aria-label="Profile">
+      <NavLink to="/screens" className={({ isActive }) => cx(isActive)} aria-label="Profile">
         <img className="icon" src="/assets/figmaimages/figma_image_205_160.png" alt="" draggable="false" />
       </NavLink>
     </nav>
